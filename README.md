@@ -4,13 +4,29 @@ Agent skills for teachers — curriculum-aligned, voice-aware, and built for rea
 
 ## Quickstart
 
+### Claude (claude.ai)
+
+Requires a **Pro, Max, Team, or Enterprise** plan with code execution enabled.
+
+1. [Download this repository as a ZIP](https://github.com/nickec86/educator-skills/archive/refs/heads/main.zip) and unzip it on your computer.
+2. In [claude.ai](https://claude.ai), open **Settings → Features → Custom Skills**.
+3. For each skill you want, zip its folder (e.g. `skills/planning/lesson-planner/`) and upload it.
+
+Once installed, start any planning session by asking Claude to use the **edu-collator** — it sets your curriculum context and coordinates everything else.
+
+> See [Using Skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude) for full instructions.
+
+### ChatGPT
+
+These skills use Anthropic's [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) format. ChatGPT has its own skills system — see [Skills in ChatGPT](https://help.openai.com/en/articles/20001066-skills-in-chatgpt) for how to configure comparable capabilities there.
+
+### Claude Code (terminal)
+
 ```bash
 npx skills@latest add nickec86/educator-skills
 ```
 
 Pick the skills you want and which coding agents to install them on.
-
-Start any planning session by loading the **[edu-collator](./skills/collator/edu-collator/SKILL.md)** — it sets your curriculum context and coordinates everything else.
 
 ## Reference
 
