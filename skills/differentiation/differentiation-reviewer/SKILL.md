@@ -2,7 +2,6 @@
 name: differentiation-reviewer
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Audits an existing lesson plan or unit for differentiation and inclusion gaps.
   Identifies who is well-served, where gaps exist, and provides specific,

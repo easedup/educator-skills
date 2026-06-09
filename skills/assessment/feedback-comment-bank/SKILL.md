@@ -2,7 +2,6 @@
 name: feedback-comment-bank
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Generates a reusable bank of written feedback phrases organised by rubric
   criterion and grade band. Designed to make marking a large set of work faster

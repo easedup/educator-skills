@@ -2,7 +2,6 @@
 name: parent-curriculum-explainer
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Translates curriculum content descriptions into plain English for families.
   Explains what students are learning, why it matters at this stage, what it

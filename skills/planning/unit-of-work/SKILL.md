@@ -2,7 +2,6 @@
 name: unit-of-work
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Creates a complete, ready-to-teach unit of work with every lesson planned in
   full detail. Trigger this skill when a teacher has a confirmed unit outline and

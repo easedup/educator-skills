@@ -2,7 +2,6 @@
 name: slide-deck
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Builds a structured lesson presentation from a lesson plan or unit content.
   Produces a slide-by-slide outline including speaker notes — what to show

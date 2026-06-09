@@ -12,7 +12,7 @@ Requires a **Pro, Max, Team, or Enterprise** plan with code execution enabled.
 2. In [claude.ai](https://claude.ai), open **Settings → Features → Custom Skills**.
 3. For each skill you want, zip its folder (e.g. `skills/planning/lesson-planner/`) and upload it.
 
-Once installed, start any planning session by asking Claude to use the **edu-collator** — it sets your curriculum context and coordinates everything else.
+Once installed, start any planning session by asking Claude to use the **orchestrator** — it sets your curriculum context and coordinates everything else.
 
 > See [Using Skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude) for full instructions.
 
@@ -34,7 +34,7 @@ Pick the skills you want and which coding agents to install them on.
 
 The master orchestrator. Load this first.
 
-- **[edu-collator](./skills/collator/edu-collator/SKILL.md)** — Entry point for any educational planning task. Sets curriculum context, selects the right downstream skills, and coordinates the full workflow.
+- **[orchestrator](./skills/collator/orchestrator/SKILL.md)** — Entry point for any educational planning task. Sets curriculum context, selects the right downstream skills, and coordinates the full workflow.
 
 ### Assessment
 
@@ -44,6 +44,7 @@ Skills for designing tasks, building rubrics, and checking student understanding
 - **[rubric-builder](./skills/assessment/rubric-builder/SKILL.md)** — Builds a criteria-based marking rubric with descriptors drawn directly from achievement standards. Works standalone or as a direct follow-on from Assessment Outline.
 - **[exit-ticket](./skills/assessment/exit-ticket/SKILL.md)** — Generates targeted end-of-lesson formative assessment questions matched to the lesson's learning intention. Supports written, multiple choice, discussion, and self-assessment formats.
 - **[feedback-comment-bank](./skills/assessment/feedback-comment-bank/SKILL.md)** — Generates a reusable bank of written feedback phrases organised by rubric criterion and grade band, grounded in achievement standards language.
+- **[assessment-schedule](./skills/assessment/assessment-schedule/SKILL.md)** — Creates a term or year assessment schedule showing all tasks, timing, modes, and curriculum standard mappings. Useful for planning, sharing with students and families, and ensuring balance across assessment types.
 
 ### Planning
 

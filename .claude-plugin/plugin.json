@@ -1,11 +1,12 @@
 {
   "name": "educator-skills",
   "skills": [
-    "./skills/collator/edu-collator",
+    "./skills/orchestrator",
     "./skills/assessment/assessment-outline",
     "./skills/assessment/rubric-builder",
     "./skills/assessment/exit-ticket",
     "./skills/assessment/feedback-comment-bank",
+    "./skills/assessment/assessment-schedule",
     "./skills/planning/lesson-planner",
     "./skills/planning/unit-outline",
     "./skills/planning/unit-of-work",

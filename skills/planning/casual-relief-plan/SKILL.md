@@ -2,7 +2,6 @@
 name: casual-relief-plan
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Generates a complete, self-contained day pack for a casual or relief teacher.
   Covers the full day's timetable, per-lesson notes and tasks, student welfare

@@ -2,7 +2,6 @@
 name: differentiation-suggester
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Proactively generates differentiation options before planning begins, so
   inclusion is designed in rather than retrofitted. Given a topic, year level,

@@ -2,7 +2,6 @@
 name: exit-ticket
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Generates targeted end-of-lesson formative assessment questions matched
   directly to the lesson's learning intention. Quick to produce, immediately

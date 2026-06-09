@@ -2,16 +2,14 @@
 name: report-comment
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Drafts personalised report comments in the teacher's own voice, aligned to
   achievement standards language. Requires the teacher to provide the achievement
   level judgment — the skill never infers or assigns grades. Works best when
   a voice profile skill is loaded (any skill named [teacher-name]-voice-profile).
-  Always fetches
-  achievement standards from EasedUP to ground the language. Produces drafts
-  for teacher review — never final without teacher approval. Trigger when a
-  teacher asks to write, draft, or generate report comments for students.
+  Always fetches achievement standards from EasedUP to ground the language.
+  Produces drafts for teacher review — never final without teacher approval.
+  Trigger when a teacher asks to write, draft, or generate report comments for students.
 ---
 
 # Report Comment Writer

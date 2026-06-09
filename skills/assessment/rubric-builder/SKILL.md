@@ -2,7 +2,6 @@
 name: rubric-builder
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Builds a criteria-based marking rubric with descriptors drawn directly from
   achievement descriptor language. Never invents descriptors — always fetches

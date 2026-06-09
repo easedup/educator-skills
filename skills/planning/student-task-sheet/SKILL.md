@@ -2,7 +2,6 @@
 name: student-task-sheet
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Translates a teacher's lesson plan or assessment task into a clear,
   student-facing document students can work from independently. Includes

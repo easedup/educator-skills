@@ -2,14 +2,12 @@
 name: parent-comms
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Drafts polished parent-facing communications in the teacher's voice.
   Supports newsletters, curriculum updates, excursion notes, learning update
   letters, end-of-term wrap-ups, and general class communications. Works best
   with a voice profile skill loaded (any skill named [teacher-name]-voice-profile).
-  Can be used
-  standalone for any teacher-to-family written communication. Trigger when a
+  Can be used standalone for any teacher-to-family written communication. Trigger when a
   teacher asks to write a newsletter, letter home, excursion note, learning
   update, or any communication directed at families.
 ---

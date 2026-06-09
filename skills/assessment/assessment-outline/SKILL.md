@@ -2,7 +2,6 @@
 name: assessment-outline
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Writes a formal assessment task outline — everything a student needs to
   understand the task and everything a teacher needs to administer it.

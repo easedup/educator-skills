@@ -2,7 +2,6 @@
 name: voice-style-capture
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Learns a teacher's written voice from examples so that report comments and
   parent communications sound like the teacher wrote them. Run this skill
@@ -149,7 +148,6 @@ root:
 name: [teacher-name]-voice-profile
 version: 1.0.0
 released: [today's date]
-changelog: https://skills.easedup.com/changelog
 description: >
   Applies [Teacher name]'s written voice to all report comments and parent
   communications in this session. Load before using Report Comment Writer

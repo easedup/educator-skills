@@ -2,7 +2,6 @@
 name: lesson-planner
 version: 1.0.2
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Creates a single complete, curriculum-aligned lesson plan. Trigger this skill
   when a teacher wants to plan one lesson — including lesson goals, success

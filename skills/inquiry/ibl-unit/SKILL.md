@@ -2,7 +2,6 @@
 name: ibl-unit
 version: 1.0.0
 released: 2025-06-05
-changelog: https://skills.easedup.com/changelog
 description: >
   Creates a complete inquiry-based learning (IBL) unit structured around a
   central inquiry question, an inquiry cycle, and student-generated
