@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasedUP — Educator Skills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'e-bg': '#FBF8F6',
+                        'e-surface': '#FFFFFF',
+                        'e-ink': '#1C1917',
+                        'e-ink-mid': '#5C5652',
+                        'e-ink-light': '#9C9490',
+                        'e-rule': '#E8E2DC',
+                        'e-coral': '#E8604A',
+                        'e-coral-pale': '#FDF1EE',
+                    },
+                    fontFamily: {
+                        'display': ['"DM Serif Display"', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'e': '4px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* custom animation for cards */
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .card-new {
+            animation: cardIn 0.25s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-e-bg text-e-ink font-body text-[14px] leading-relaxed antialiased">
+
+    <header class="bg-e-surface border-b border-e-rule sticky top-0 z-20">
+        <div class="max-w-[1200px] mx-auto px-8 h-14 flex items-center justify-between relative">
+            <a href="#" class="font-semibold text-[15px] tracking-tight decoration-0">Eased<span class="text-e-coral">UP</span></a>
+            <div class="relative">
+                <button id="my-pack-btn" class="bg-none border border-e-rule rounded-e px-3.5 py-1.5 text-[13px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors">My Pack &nbsp;·&nbsp; 0</button>
+                
+                <!-- Dropdown -->
+                <div id="pack-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-e-surface border border-e-rule rounded-e shadow-lg z-30 py-3">
+                    <div class="px-4 pb-2 border-b border-e-rule mb-2">
+                        <span class="text-[11px] font-semibold tracking-widest uppercase text-e-ink-light">My Pack</span>
+                    </div>
+                    <div id="pack-list" class="max-h-64 overflow-y-auto px-4 flex flex-col gap-2">
+                        <!-- Items will be injected here -->
+                    </div>
+                    <div id="pack-empty" class="px-4 py-4 text-center text-e-ink-light text-[12px]">
+                        Your pack is empty.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1200px] mx-auto px-8 pb-20">
+
+        <section class="py-16 border-b border-e-rule mb-12">
+            <h1 class="font-display text-[clamp(34px,4.5vw,54px)] font-normal leading-[1.08] tracking-tight mb-4 max-w-[640px]">
+                Your AI already works.<br><em class="italic text-e-coral">Give it the right skills.</em>
+            </h1>
+            <p class="text-[14px] text-e-ink-mid max-w-[520px] mb-8 leading-[1.65]">
+                Free teaching skills for Claude, ChatGPT, or any AI you already use. <strong class="text-e-ink font-medium">No subscription. No extra tools. No excuse not to.</strong> Just drop a skill into your AI and take back your planning time.
+            </p>
+            <div class="flex max-w-[520px] border border-e-rule rounded-e bg-e-surface transition-all focus-within:border-e-coral focus-within:shadow-[0_0_0_3px_rgba(232,96,74,0.12)]">
+                <input class="flex-1 border-none bg-none p-3 px-4 text-[14px] text-e-ink outline-none placeholder:text-e-ink-light" type="text" placeholder="Search skills, topics, or categories…" id="search-input">
+                <button class="border-none border-l border-e-rule bg-none px-5 text-[13px] font-medium text-e-ink-mid hover:bg-e-coral hover:text-white transition-colors rounded-r-e">Search</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors active-pill" data-filter="all">All</button>
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors" data-filter="planning">Planning</button>
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors" data-filter="assessment">Assessment</button>
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors" data-filter="differentiation">Differentiation</button>
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors" data-filter="communication">Communication</button>
+                <button class="filter-pill bg-none border border-e-rule rounded-e px-3 py-1 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink transition-colors" data-filter="inquiry">Inquiry</button>
+            </div>
+        </section>
+
+        <section>
+            <div class="flex items-center justify-between py-3.5 pb-5">
+                <span class="text-[11px] font-semibold tracking-widest uppercase text-e-ink-light" id="section-title">Recommended</span>
+                <button class="bg-none border border-e-rule rounded-e px-5 py-1.5 text-[12px] font-medium text-e-ink-mid hover:border-e-ink-mid hover:text-e-ink hover:bg-e-surface transition-colors disabled:opacity-35 disabled:cursor-default disabled:pointer-events-none" id="load-more-btn">Load more</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-0">
+                <div class="flex items-center gap-3 pb-3.5 border-b border-e-rule">
+                    <span class="text-[11px] font-semibold tracking-widest uppercase text-e-ink-light whitespace-nowrap">Most popular</span>
+                    <div class="flex-1 h-px bg-e-rule"></div>
+                </div>
+                <div class="hidden md:flex items-center gap-3 pb-3.5 border-b border-e-rule">
+                    <span class="text-[11px] font-semibold tracking-widest uppercase text-e-ink-light whitespace-nowrap">Middle ground</span>
+                    <div class="flex-1 h-px bg-e-rule"></div>
+                </div>
+                <div class="hidden md:flex items-center gap-3 pb-3.5 border-b border-e-rule">
+                    <span class="text-[11px] font-semibold tracking-widest uppercase text-e-ink-light whitespace-nowrap">Newest</span>
+                    <div class="flex-1 h-px bg-e-rule"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start w-full mt-4" id="skills-columns">
+                <div class="flex flex-col gap-4 min-w-0" id="col-popular"></div>
+                <div class="flex flex-col gap-4 min-w-0" id="col-middle"></div>
+                <div class="flex flex-col gap-4 min-w-0" id="col-newest"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="border-t border-e-rule py-7 px-8">
+        <div class="max-w-[1200px] mx-auto flex justify-between items-center">
+            <p class="text-[12px] text-e-ink-light">Free for every teacher. Powered by curriculum data.</p>
+            <p class="text-[12px] text-e-ink-light">EasedUP · skills.easedup.com</p>
+        </div>
+    </footer>
+
+    <script>
+    // ── Data ──────────────────────────────────────────────────────────────────
+    const SKILLS = [
+  {
+    "id": 1,
+    "name": "Assessment Outline",
+    "category": "assessment",
+    "desc": "Writes a formal assessment task outline — everything a student needs to understand the task and everything a teacher needs to administer it. Includes task description, conditions, mode, curriculum links, and a pointer to the rubric. Always fetches live curriculum content and achievement descriptors from EasedUP before generating. Works standalone or as part of the assessment sequence with Rubric Builder. Trigger when a teacher needs to write up a formal assessment task for any subject or year level.",
+    "version": "1.0.2",
+    "rating": 58,
+    "addedOrder": 1
+  },
+  {
+    "id": 2,
+    "name": "Assessment Schedule",
+    "category": "assessment",
+    "desc": "Creates a term or year assessment schedule — a chronological overview of all assessment tasks, when they occur, what mode they use, and which curriculum standards they address. Useful for planning, for sharing with students and families at the start of a term, and for ensuring balance across assessment types and modes. Fetches achievement standards from EasedUP and suggests standard mappings for each task — the teacher confirms, adjusts, or swaps before the schedule is finalised.",
+    "version": "1.0.2",
+    "rating": 66,
+    "addedOrder": 2
+  },
+  {
+    "id": 3,
+    "name": "Exit Ticket",
+    "category": "assessment",
+    "desc": "Generates targeted end-of-lesson formative assessment questions matched directly to the lesson's learning intention. Quick to produce, immediately usable. Supports written, multiple choice, discussion, and self-assessment formats, including a differentiated option for mixed-readiness classes. Works standalone or as the closing element of a lesson plan produced by the EasedUP Lesson Planner.",
+    "version": "1.0.2",
+    "rating": 96,
+    "addedOrder": 3
+  },
+  {
+    "id": 4,
+    "name": "Feedback Comment Bank",
+    "category": "assessment",
+    "desc": "Generates a reusable bank of written feedback phrases organised by rubric criterion and grade band. Designed to make marking a large set of work faster and more consistent. Phrases are specific and actionable, grounded in the rubric or achievement standards. Adapts to teacher voice if a voice profile is available. Works standalone or after a Rubric Builder or Assessment Outline output produced by EasedUP.",
+    "version": "1.0.2",
+    "rating": 72,
+    "addedOrder": 4
+  },
+  {
+    "id": 5,
+    "name": "Rubric Builder",
+    "category": "assessment",
+    "desc": "Builds a criteria-based marking rubric with descriptors drawn directly from achievement descriptor language. Never invents descriptors — always fetches live achievement descriptors from EasedUP first, or uses them from context if Assessment Outline was just run. Works standalone or as a direct follow-on from the Assessment Outline skill. Trigger when a teacher needs a rubric for any assessment task.",
+    "version": "1.0.2",
+    "rating": 50,
+    "addedOrder": 5
+  },
+  {
+    "id": 6,
+    "name": "Parent Comms",
+    "category": "communication",
+    "desc": "Drafts polished parent-facing communications in the teacher's voice. Supports newsletters, curriculum updates, excursion notes, learning update letters, end-of-term wrap-ups, and general class communications. Works best with a voice profile skill loaded (any skill named [teacher-name]-voice-profile). Can be used standalone for any teacher-to-family written communication. Trigger when a teacher asks to write a newsletter, letter home, excursion note, learning update, or any communication directed at families.",
+    "version": "1.0.2",
+    "rating": 92,
+    "addedOrder": 6
+  },
+  {
+    "id": 7,
+    "name": "Parent Curriculum Explainer",
+    "category": "communication",
+    "desc": "Translates curriculum content descriptions into plain English for families. Explains what students are learning, why it matters at this stage, what it looks like in practice, and how families can support at home. Suitable for curriculum nights, newsletters, or unit overview letters. Always fetches real curriculum content from EasedUP — never paraphrases from memory. Trigger when a teacher asks to write a parent explainer, curriculum night handout, newsletter blurb, or unit overview for families.",
+    "version": "1.0.2",
+    "rating": 77,
+    "addedOrder": 7
+  },
+  {
+    "id": 8,
+    "name": "Report Comment",
+    "category": "communication",
+    "desc": "Drafts personalised report comments in the teacher's own voice, aligned to achievement standards language. Requires the teacher to provide the achievement level judgment — the skill never infers or assigns grades. Works best when a voice profile skill is loaded (any skill named [teacher-name]-voice-profile). Always fetches achievement standards from EasedUP to ground the language. Produces drafts for teacher review — never final without teacher approval. Trigger when a teacher asks to write, draft, or generate report comments for students.",
+    "version": "1.0.2",
+    "rating": 96,
+    "addedOrder": 8
+  },
+  {
+    "id": 9,
+    "name": "Voice Style Capture",
+    "category": "communication",
+    "desc": "Learns a teacher's written voice from examples so that report comments and parent communications sound like the teacher wrote them. Run this skill once before using Report Comment Writer or Parent Comms Writer. Analyses tone, sentence patterns, vocabulary, warmth level, and structural habits from the teacher's own writing samples. Produces a saved voice profile skill file — [teacher-name]-voice-profile — that Report Comment Writer and Parent Comms Writer detect and apply silently when loaded. Trigger when a teacher wants to personalise their AI-drafted communications or report comments to match their own writing style.",
+    "version": "1.0.2",
+    "rating": 43,
+    "addedOrder": 9
+  },
+  {
+    "id": 10,
+    "name": "Differentiation Reviewer",
+    "category": "differentiation",
+    "desc": "Audits an existing lesson plan or unit for differentiation and inclusion gaps. Identifies who is well-served, where gaps exist, and provides specific, actionable suggestions for each gap. Does not rewrite the plan — gives the teacher targeted adjustments that preserve their planning work. Works standalone or called by the EasedUP Edu Collator for a review task.",
+    "version": "1.0.2",
+    "rating": 79,
+    "addedOrder": 10
+  },
+  {
+    "id": 11,
+    "name": "Differentiation Suggester",
+    "category": "differentiation",
+    "desc": "Proactively generates differentiation options before planning begins, so inclusion is designed in rather than retrofitted. Given a topic, year level, and optional learner profile, produces a menu of specific strategies for support, extension, English language learners, and specific learning needs — all anchored to the curriculum content. Use before Lesson Planner or Unit Outline to inform the design, or as a standalone differentiation planning tool. Works standalone or called by the EasedUP Edu Collator.",
+    "version": "1.0.2",
+    "rating": 78,
+    "addedOrder": 11
+  },
+  {
+    "id": 12,
+    "name": "IBL Unit",
+    "category": "inquiry",
+    "desc": "Creates a complete inquiry-based learning (IBL) unit structured around a central inquiry question, an inquiry cycle, and student-generated understanding. Curriculum links are mapped throughout. Differentiation is integrated into each phase. Supports structured, guided, and open inquiry models. Works standalone or via the EasedUP Edu Collator. Always fetches curriculum content from EasedUP before generating. For units that require a public product and real-world audience as the organising structure, use the PBL Unit skill instead.",
+    "version": "1.0.0",
+    "rating": 55,
+    "addedOrder": 12
+  },
+  {
+    "id": 13,
+    "name": "PBL Unit",
+    "category": "inquiry",
+    "desc": "Creates a complete project-based learning (PBL) unit structured around a driving question, real-world context, inquiry phases, milestones, and a public product. Curriculum links are mapped throughout — not bolted on at the end. Differentiation is integrated into each phase. Works standalone or via the EasedUP Edu Collator. Always fetches curriculum content from EasedUP before generating. For inquiry-based learning units without a product or public audience focus, use the IBL Unit skill instead.",
+    "version": "1.0.2",
+    "rating": 44,
+    "addedOrder": 13
+  },
+  {
+    "id": 14,
+    "name": "Orchestrator",
+    "category": "orchestrator",
+    "desc": "The master orchestrator for all EasedUP teacher planning skills. Use this skill whenever a teacher wants to create ANY educational content — lesson plans, unit outlines, units of work, assessments, rubrics, differentiation, PBL units, slide decks, student task sheets, report comments, parent communications, or any other teaching resource. This skill should trigger at the START of any educational planning conversation, even if the teacher's request seems simple or they haven't specified exactly what they need. It sets the curriculum context, selects the right downstream skills, and coordinates the entire workflow. Do not skip this skill for educational tasks — it ensures all outputs are correctly aligned to the teacher's curriculum, year level, and preferences.",
+    "version": "1.0.2",
+    "rating": 100,
+    "addedOrder": 14
+  },
+  {
+    "id": 15,
+    "name": "Casual Relief Plan",
+    "category": "planning",
+    "desc": "Generates a complete, self-contained day pack for a casual or relief teacher. Covers the full day's timetable, per-lesson notes and tasks, student welfare information (allergies, medication, learning needs), yard duty and admin responsibilities, and emergency contacts. Can be built from existing lesson plans or from scratch with basic topic and year level information. Output is plain language, no jargon, and ready to hand to any relief teacher without further explanation.",
+    "version": "1.0.2",
+    "rating": 41,
+    "addedOrder": 15
+  },
+  {
+    "id": 16,
+    "name": "Lesson Planner",
+    "category": "planning",
+    "desc": "Creates a single complete, curriculum-aligned lesson plan. Trigger this skill when a teacher wants to plan one lesson — including lesson goals, success criteria, a teaching sequence, differentiation, resources, and assessment. Always fetches live curriculum content from EasedUP before generating. Never invents curriculum codes or standards. Works standalone or when called by the EasedUP Edu Collator.",
+    "version": "1.0.2",
+    "rating": 81,
+    "addedOrder": 16
+  },
+  {
+    "id": 17,
+    "name": "Slide Deck",
+    "category": "planning",
+    "desc": "Builds a structured lesson presentation from a lesson plan or unit content. Produces a slide-by-slide outline including speaker notes — what to show and what to say. Checks for a slide-deck-template skill before applying default structure. Works standalone or as a follow-on from Lesson Planner. If no lesson plan is in context, fetches curriculum content to ground learning intentions and success criteria. Does not produce a file — outputs the slide structure and content for the teacher to build in their preferred tool (PowerPoint, Google Slides, Canva, Keynote). Trigger when a teacher asks to create a slide deck, lesson presentation, or lesson slides.",
+    "version": "1.0.2",
+    "rating": 57,
+    "addedOrder": 17
+  },
+  {
+    "id": 18,
+    "name": "Student Task Sheet",
+    "category": "planning",
+    "desc": "Translates a teacher's lesson plan or assessment task into a clear, student-facing document students can work from independently. Includes instructions, scaffolds, success criteria in student language, and an extension prompt. Works standalone or as a follow-on from Lesson Planner, Unit of Work, or Assessment Outline. Checks for a student-task-sheet template skill before applying the default structure. Trigger when a teacher asks to create a student task sheet, student-facing instructions, or a task handout.",
+    "version": "1.0.2",
+    "rating": 55,
+    "addedOrder": 18
+  },
+  {
+    "id": 19,
+    "name": "Unit of Work",
+    "category": "planning",
+    "desc": "Creates a complete, ready-to-teach unit of work with every lesson planned in full detail. Trigger this skill when a teacher has a confirmed unit outline and wants to expand it into a full lesson-by-lesson unit. Always validates the unit outline before expanding — never generates full lesson detail without first confirming the unit shape. Calls the Lesson Planner skill internally for each lesson to ensure consistent structure and curriculum alignment throughout. Works standalone or when called by the EasedUP Edu Collator.",
+    "version": "1.0.2",
+    "rating": 59,
+    "addedOrder": 19
+  },
+  {
+    "id": 20,
+    "name": "Unit Outline",
+    "category": "planning",
+    "desc": "Creates a high-level unit outline — scope and sequence, big ideas, essential questions, curriculum links, and assessment overview — before committing to full lesson detail. Use this as the first stage of unit planning, or as a standalone deliverable when a teacher needs a unit overview for planning, reporting, or sharing with colleagues. Always validates with the teacher before expanding to a full Unit of Work.",
+    "version": "1.0.2",
+    "rating": 74,
+    "addedOrder": 20
+  }
+];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+    let currentFilter = "all";
+    let cardsLoaded   = 0;
+    let myPack        = [];
+
+    function updatePackUI() {
+        const btn = document.getElementById("my-pack-btn");
+        btn.innerHTML = `My Pack &nbsp;·&nbsp; ${myPack.length}`;
+    }
+
+    function toggleDropdown(e) {
+        if (e) e.stopPropagation();
+        const dropdown = document.getElementById("pack-dropdown");
+        dropdown.classList.toggle("hidden");
+        if (!dropdown.classList.contains("hidden")) {
+            renderPackList();
+        }
+    }
+
+    function renderPackList() {
+        const listContainer = document.getElementById("pack-list");
+        const emptyMsg = document.getElementById("pack-empty");
+        listContainer.innerHTML = "";
+        
+        if (myPack.length === 0) {
+            emptyMsg.classList.remove("hidden");
+            return;
+        }
+        
+        emptyMsg.classList.add("hidden");
+        
+        myPack.forEach(skillId => {
+            const skill = SKILLS.find(s => s.id === skillId);
+            if (!skill) return;
+            
+            const item = document.createElement("div");
+            item.className = "flex justify-between items-center gap-2 py-2 border-b border-e-rule last:border-0";
+            item.innerHTML = `
+                <div class="flex flex-col min-w-0">
+                    <span class="text-[12px] font-semibold text-e-ink truncate">${skill.name}</span>
+                    <span class="text-[10px] text-e-ink-light uppercase tracking-tight font-medium">${tagLabel(skill.category)}</span>
+                </div>
+                <button class="text-e-ink-light hover:text-e-coral text-[18px] leading-none px-1" onclick="removeFromPack(${skillId}, event)">&times;</button>
+            `;
+            listContainer.appendChild(item);
+        });
+    }
+
+    function removeFromPack(id, event) {
+        if (event) event.stopPropagation();
+        myPack = myPack.filter(sid => sid !== id);
+        updatePackUI();
+        renderPackList();
+        
+        // Update the card button in the grid if it exists
+        document.querySelectorAll('.add-to-pack-btn').forEach(btn => {
+            // This is a bit hacky because we don't have a direct ref to the skill ID on the button,
+            // but we can re-render the view or just check the text/state.
+            // Re-rendering everything is safer for keeping state in sync.
+        });
+        renderAll(currentFilter);
+    }
+
+    // ── Sorted pools ─────────────────────────────────────────────────────────
+    let poolPopular = [];
+    let poolMiddle  = [];
+    let poolNewest  = [];
+
+    function buildPools(filter) {
+        const base = filter === "all"
+            ? [...SKILLS]
+            : SKILLS.filter(s => s.category === filter);
+
+        // Partition into 3 pools without duplicates
+        const sortedByRating = [...base].sort((a, b) => b.rating - a.rating);
+        const count = sortedByRating.length;
+        const third = Math.ceil(count / 3);
+
+        // 1. Popular Pool (Top 1/3 by rating)
+        poolPopular = sortedByRating.slice(0, third);
+        
+        // 2. Newest Pool (Top 1/2 of remaining by addedOrder)
+        const remaining = sortedByRating.slice(third);
+        const remainingSortedByNewest = [...remaining].sort((a, b) => b.addedOrder - a.addedOrder);
+        const halfRemaining = Math.ceil(remainingSortedByNewest.length / 2);
+        
+        poolNewest = remainingSortedByNewest.slice(0, halfRemaining);
+        
+        // 3. Middle Pool (The rest)
+        poolMiddle = remainingSortedByNewest.slice(halfRemaining);
+    }
+
+    // ── Tag helpers ───────────────────────────────────────────────────────────
+    function getTagStyles(cat) {
+        const maps = {
+            assessment: "bg-e-coral-pale text-e-coral",
+            planning: "bg-[#EEF5EC] text-[#3A7A1E]",
+            differentiation: "bg-[#FDF4E8] text-[#B5660E]",
+            communication: "bg-[#F0ECF8] text-[#6B35AE]",
+            inquiry: "bg-blue-50 text-blue-600",
+            orchestrator: "bg-purple-50 text-purple-600"
+        };
+        return maps[cat] || "bg-e-rule text-e-ink-mid";
+    }
+
+    function tagLabel(cat) {
+        return cat.charAt(0).toUpperCase() + cat.slice(1);
+    }
+
+    // ── Build a single card ───────────────────────────────────────────────────
+    function buildCard(skill, isPrimary, animate) {
+        const card = document.createElement("div");
+        card.className = `bg-e-surface border border-e-rule rounded-e p-5 flex flex-col transition-all hover:border-[#C8C2BC] ${isPrimary ? 'bg-e-coral border-e-coral hover:bg-[#D04E38] hover:border-[#D04E38]' : ''} ${animate ? 'card-new' : ''}`;
+        
+        const isInPack = myPack.includes(skill.id);
+        const tagClass = isPrimary ? "bg-white/20 text-white" : getTagStyles(skill.category);
+        const versionClass = isPrimary ? "text-white/50" : "text-e-ink-light";
+        const titleClass = isPrimary ? "text-white" : "text-e-ink";
+        const descClass = isPrimary ? "text-white/80" : "text-e-ink-mid";
+        const btnDownloadClass = isPrimary ? "bg-white/22 border border-white/35 hover:bg-white/32" : "bg-e-ink text-white hover:bg-[#333]";
+        
+        let btnAddClass = isPrimary ? "border-white/35 text-white/85 hover:bg-white/12" : "border-e-rule text-e-ink-mid hover:border-e-coral hover:text-e-coral";
+        if (isInPack) {
+            btnAddClass = isPrimary ? "bg-white/20 border-white/40 text-white" : "bg-e-coral-pale border-e-coral/20 text-e-coral";
+        }
+
+        card.innerHTML = `
+            <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-semibold tracking-widest uppercase px-2 py-0.5 rounded-e ${tagClass}">${tagLabel(skill.category)}</span>
+                <span class="text-[10px] font-mono ${versionClass}">${skill.version}</span>
+            </div>
+            <div class="text-[16px] font-semibold tracking-tight leading-tight mb-2 ${titleClass}">${skill.name}</div>
+            <div class="text-[12px] leading-relaxed mb-4 flex-1 ${descClass}">${skill.desc}</div>
+            <div class="flex gap-2">
+                <button class="flex-1 border-none rounded-e py-2 text-[12px] font-medium cursor-pointer transition-colors ${btnDownloadClass}">Download</button>
+                <button class="add-to-pack-btn bg-none border rounded-e px-3 py-2 text-[12px] font-medium cursor-pointer transition-colors ${btnAddClass}">${isInPack ? 'Added' : '+ Pack'}</button>
+            </div>
+        `;
+
+        card.querySelector('.add-to-pack-btn').addEventListener('click', function() {
+            if (!myPack.includes(skill.id)) {
+                myPack.push(skill.id);
+                this.textContent = 'Added';
+                if (isPrimary) {
+                    this.className = "add-to-pack-btn bg-none border rounded-e px-3 py-2 text-[12px] font-medium cursor-pointer transition-colors bg-white/20 border-white/40 text-white";
+                } else {
+                    this.className = "add-to-pack-btn bg-none border rounded-e px-3 py-2 text-[12px] font-medium cursor-pointer transition-colors bg-e-coral-pale border-e-coral/20 text-e-coral";
+                }
+                updatePackUI();
+            }
+        });
+
+        return card;
+    }
+
+    // ── Render ────────────────────────────────────────────────────────────────
+    function loadNextRow(animate) {
+        const colPop = document.getElementById("col-popular");
+        const colMid = document.getElementById("col-middle");
+        const colNew = document.getElementById("col-newest");
+
+        const skillPop = poolPopular[cardsLoaded] || null;
+        const skillMid = poolMiddle[cardsLoaded]  || null;
+        const skillNew = poolNewest[cardsLoaded]  || null;
+
+        // Prepend new cards to push existing ones down
+        if (skillPop) colPop.prepend(buildCard(skillPop, cardsLoaded === 0 && currentFilter === "all", animate));
+        if (skillMid) colMid.prepend(buildCard(skillMid, false, animate));
+        if (skillNew) colNew.prepend(buildCard(skillNew, false, animate));
+
+        cardsLoaded++;
+        updateLoadMore();
+    }
+
+    function updateLoadMore() {
+        const btn = document.getElementById("load-more-btn");
+        const maxLen = Math.max(poolPopular.length, poolMiddle.length, poolNewest.length);
+        const remaining = maxLen - cardsLoaded;
+        if (remaining <= 0) {
+            btn.disabled = true;
+            btn.textContent = "All loaded";
+        } else {
+            btn.disabled = false;
+            btn.textContent = `Load more  ·  ${remaining} left`;
+        }
+    }
+
+    function renderAll(filter) {
+        currentFilter = filter;
+        cardsLoaded   = 0;
+        document.getElementById("col-popular").innerHTML = "";
+        document.getElementById("col-middle").innerHTML  = "";
+        document.getElementById("col-newest").innerHTML  = "";
+        buildPools(filter);
+        if (poolPopular.length > 0) {
+            loadNextRow(false);
+        }
+        const title = document.getElementById("section-title");
+        title.textContent = filter === "all" ? "Recommended" : tagLabel(filter);
+    }
+
+    // ── Events ────────────────────────────────────────────────────────────────
+    document.getElementById("my-pack-btn").addEventListener("click", toggleDropdown);
+    
+    document.addEventListener("click", (e) => {
+        const dropdown = document.getElementById("pack-dropdown");
+        const btn = document.getElementById("my-pack-btn");
+        if (!dropdown.contains(e.target) && e.target !== btn) {
+            dropdown.classList.add("hidden");
+        }
+    });
+
+    document.querySelectorAll(".filter-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("bg-e-ink", "border-e-ink", "text-white"));
+            btn.classList.add("bg-e-ink", "border-e-ink", "text-white");
+            renderAll(btn.dataset.filter);
+        });
+    });
+
+    document.getElementById("load-more-btn").addEventListener("click", () => loadNextRow(true));
+
+    document.getElementById("search-input").addEventListener("input", function () {
+        const q = this.value.toLowerCase().trim();
+        document.querySelectorAll("#skills-columns div[class*='bg-e-surface']").forEach(card => {
+            card.style.opacity = (!q || card.textContent.toLowerCase().includes(q)) ? "1" : "0.2";
+        });
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    document.querySelector('[data-filter="all"]').classList.add("bg-e-ink", "border-e-ink", "text-white");
+    renderAll("all");
+    </script>
+
+</body>
+</html>
